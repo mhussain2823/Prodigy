@@ -1,0 +1,31 @@
+import numpy as np
+import pandas as pd
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Number of data points
+num_samples = 1000
+
+# Generate random values for square footage, bedrooms, and bathrooms
+square_footage = np.random.randint(800, 3500, size=num_samples)
+bedrooms = np.random.randint(1, 6, size=num_samples)
+bathrooms = np.random.uniform(1, 4, size=num_samples)
+
+# Generate prices based on the equation: price = 100 * square_footage + 20000 * bedrooms + 15000 * bathrooms + random_noise
+random_noise = np.random.normal(0, 20000, size=num_samples)  # Random noise with normal distribution
+prices = 100 * square_footage + 20000 * bedrooms + 15000 * bathrooms + random_noise
+
+# Create a DataFrame to store the data
+data = pd.DataFrame({
+    'Square Footage': square_footage,
+    'Bedrooms': bedrooms,
+    'Bathrooms': bathrooms,
+    'Price': prices
+})
+
+# Save the dataset to a CSV file
+data.to_csv('house_prices_dataset.csv', index=False)
+
+# Display the first few rows of the dataset
+print(data.head())
